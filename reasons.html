@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>100 reasons ✦</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d0d2b 0%, #1a1040 40%, #2d1b69 70%, #1a0533 100%);
+      font-family: 'Nunito', sans-serif;
+      color: #f0e6ff;
+      padding: 40px 20px 80px;
+    }
+
+    .stars-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: twinkle var(--dur) ease-in-out infinite var(--delay);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.4); }
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 24px; left: 24px;
+      z-index: 10;
+      text-decoration: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(200,160,255,0.7);
+      letter-spacing: 0.08em;
+      padding: 8px 16px;
+      border: 1px solid rgba(200,160,255,0.2);
+      border-radius: 50px;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.04);
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      color: #e8d0ff;
+      border-color: rgba(200,160,255,0.5);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-bottom: 50px;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .header-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c8a8f0;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 600;
+      color: #f5eeff;
+      text-shadow: 0 0 40px rgba(200,150,255,0.4);
+    }
+
+    .header h1 em {
+      font-style: italic;
+      color: #e8d0ff;
+    }
+
+    .header-sub {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #a07ec0;
+      font-weight: 300;
+    }
+
+    .divider {
+      margin: 20px auto 0;
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #b67fff, transparent);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .grid {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .reason-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      backdrop-filter: blur(6px);
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      animation: fadeInUp 0.5s ease both;
+      animation-delay: var(--delay);
+      cursor: default;
+    }
+
+    .reason-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      border-color: rgba(180,120,255,0.25);
+    }
+
+    .reason-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #9b6fd4;
+      min-width: 28px;
+      padding-top: 1px;
+      font-style: italic;
+    }
+
+    .reason-text {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: #ddc8f8;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars-container" id="stars"></div>
+  <a href="index.html" class="back-btn">← back</a>
+
+  <div class="header">
+    <p class="header-label">✦ for sheryl ✦</p>
+    <h1>100 reasons why <em>I like you</em></h1>
+    <p class="header-sub">in no particular order, just how they came to me</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="grid" id="reasonsGrid"></div>
+
+  <script>
+    const reasons = [
+      "the way your eyes light up when you talk about something you love",
+      "you make ordinary moments feel special without even trying",
+      "your laugh, it's genuinely contagious",
+      "how thoughtful you are, even in the smallest gestures",
+      "the way you care deeply about the people in your life",
+      "you're honest, even when it would be easier not to be",
+      "how you make me feel seen and heard",
+      "your sense of humor catches me off guard every time",
+      "the way you get excited about things you're passionate about",
+      "you're curious, you actually want to learn and understand things",
+      "how you hold yourself with quiet confidence",
+      "the softness in you that you don't always let everyone see",
+      "you put real effort into the things that matter to you",
+      "the way you smile when something genuinely makes you happy",
+      "you remember the little details about people",
+      "how you show up, actually show up, for me",
+      "your taste in things, from music to places to ideas",
+      "the way you talk",
+      "you're not afraid to be yourself, even in unfamiliar spaces",
+      "how you can make a quiet moment feel full",
+      "your ability to find humor in stressful situations",
+      "the way you listen",
+      "you're kinder than you probably give yourself credit for",
+      "how your mood can brighten up a whole room",
+      "the way you handle hard things — with more grace than you realize",
+      "you're someone people naturally gravitate toward",
+      "how you balance being strong and being gentle",
+      "the little expressions you make without noticing",
+      "you have a way of making even difficult conversations feel okay",
+      "how you look when you're deep in thought",
+      "you're genuinely good, not just nice on the surface",
+      "the way you care about doing things right, not just getting them done",
+      "how you find beauty in small, everyday things",
+      "your voice",
+      "you're present, you're actually here when you're here",
+      "the warmth you carry into every space you enter",
+      "how you hold space for other people's feelings",
+      "the way you push through even when things are tough",
+      "you have standards for yourself that come from a real place",
+      "your resilience",
+      "how you notice things other people miss",
+      "the way you move through the world with intention",
+      "you can be silly and serious in the same breath",
+      "how you make people feel comfortable being themselves around you",
+      "your sensitivity, it's a strength, not a flaw",
+      "the way you light up talking about the people you love",
+      "you're someone people trust, and that's not a small thing",
+      "how you carry yourself even on hard days",
+      "the way your personality surprises people who think they have you figured out",
+      "you bring a kind of realness that's hard to find",
+      "how you laugh at yourself without tearing yourself down",
+      "the way you turn even mundane things into something worth remembering",
+      "you're dependable without being boring about it",
+      "the way you remember things about me",
+      "the care you put into your friendships",
+      "the way you handle people gently, even when you're frustrated",
+      "you know who you are, even when things are uncertain",
+      "how you make hard things look effortless, even though I know they're not",
+      "the softness in your eyes when you're happy",
+      "you're growing all the time, and you don't even notice how much",
+      "how you're brave enough to feel things fully",
+      "the way you make someone feel like they matter",
+      "you're more interesting than you let on",
+      "how you can shift between moods without losing yourself",
+      "the way you carry stories, yours and other people's",
+      "you're not just smart, you're wise in a quiet way",
+      "how you treat people who can't do anything for you",
+      "the way you're generous with your time and energy",
+      "you're open to being wrong and to changing your mind",
+      "how you hold your own in any kind of conversation",
+      "the way you make people feel lucky to know you",
+      "your capacity for empathy is rare and real",
+      "how you find ways to make things better even in small ways",
+      "the way your personality fills up the spaces you're in",
+      "you're interesting to talk to about almost anything",
+      "how you make being yourself look easy",
+      "the way you move between seriousness and playfulness so naturally",
+      "you're someone who makes people feel less alone",
+      "how you take care of yourself and the people around you equally",
+      "the quiet loyalty you have toward the people you let in",
+      "you're brave in ways you probably don't call brave",
+      "how you show love in your own particular way",
+      "the way you take up space",
+      "you have a spirit that's genuinely hard to ignore",
+      "how you make everything feel a little bit lighter",
+      "the way you're tender with the things and people that matter",
+      "you have a depth to you that takes time to see but is absolutely there",
+      "how you've shaped the way I see things, just by being you",
+      "the way you carry yourself through the unknown with a kind of quiet courage",
+      "you're thoughtful in a way that feels rare these days",
+      "how you love the things you love without embarrassment",
+      "the way even your silences are comfortable",
+      "you remind people what it means to be present",
+      "how you take the ordinary and make it feel worth holding onto",
+      "the way your personality stays consistent no matter who's around",
+      "you give people a reason to be a little more open",
+      "how the world genuinely feels better with you in it",
+      "the way I think about things differently because of you",
+      "just you, exactly as you are, all of it, you are the person i fell for",
+    ];
+
+    const grid = document.getElementById('reasonsGrid');
+    reasons.forEach((text, i) => {
+      const card = document.createElement('div');
+      card.className = 'reason-card';
+      card.style.setProperty('--delay', `${Math.min(i * 0.03, 2)}s`);
+      card.innerHTML = `
+        <span class="reason-num">${i + 1}.</span>
+        <span class="reason-text">${text}</span>
+      `;
+      grid.appendChild(card);
+    });
+
+    // Stars
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.5 + 0.5;
+      s.style.cssText = `
+        width: ${size}px; height: ${size}px;
+        top: ${Math.random() * 100}%; left: ${Math.random() * 100}%;
+        --dur: ${Math.random() * 3 + 2}s;
+        --delay: ${Math.random() * 4}s;
+      `;
+      starsEl.appendChild(s);
+    }
+  </script>
+</body>
+</html>

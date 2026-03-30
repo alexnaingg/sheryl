@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>a little note ✦</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d0d2b 0%, #1a1040 40%, #2d1b69 70%, #1a0533 100%);
+      font-family: 'Nunito', sans-serif;
+      color: #f0e6ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .stars-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: white;
+      animation: twinkle var(--dur) ease-in-out infinite var(--delay);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.4); }
+    }
+
+    .back-btn {
+      position: fixed;
+      top: 24px; left: 24px;
+      z-index: 10;
+      text-decoration: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(200,160,255,0.7);
+      letter-spacing: 0.08em;
+      padding: 8px 16px;
+      border: 1px solid rgba(200,160,255,0.2);
+      border-radius: 50px;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.04);
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      color: #e8d0ff;
+      border-color: rgba(200,160,255,0.5);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .envelope-wrap {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s ease both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .envelope-label {
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c8a8f0;
+    }
+
+    .letter-card {
+      max-width: 560px;
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 28px;
+      padding: 50px 52px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.08);
+      position: relative;
+    }
+
+    .letter-card::before {
+      content: '✦';
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: rgba(180,120,255,0.4);
+    }
+
+    .letter-to {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #c8a8f0;
+      margin-bottom: 24px;
+    }
+
+    .letter-body {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #ede0ff;
+      font-weight: 400;
+      /* ADD YOUR PARAGRAPH BELOW THIS LINE */
+    }
+
+    .letter-body p {
+      margin-bottom: 16px;
+    }
+
+    .letter-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .letter-sign {
+      margin-top: 32px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #c8a8f0;
+      text-align: right;
+    }
+
+    .divider {
+      margin: 24px 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(180,120,255,0.3), transparent);
+    }
+
+    .moon-deco {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 28px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars-container" id="stars"></div>
+  <a href="index.html" class="back-btn">← back</a>
+
+  <div class="envelope-wrap">
+    <p class="envelope-label">✦ a little note ✦</p>
+    <div class="letter-card">
+      <div class="moon-deco">🌙</div>
+      <p class="letter-to">dear Sheryl,</p>
+
+      <div class="letter-body">
+        <!-- ✏️ write your paragraph here — replace this comment with your words --> 
+        <p>hi sheryl, i hope you're sleeping well right now, and i cant stop thinking about you so i made this and I HAVE NEVER DONE THIS FOR ANYONE if youre wonderin. i miss you so much like so so much, i miss hearing your voice, i miss hearing your laugh, and i just miss being around you. i want to cuddle and i want to be beside you right now, and i cant wait to be beside you soon. i hope you sleep well and youre reading this in the morning. take care and sleep well sheryl. - Alex Naing</p>
+      </div>
+
+      <div class="divider"></div>
+      <p class="letter-sign">&nbsp;✦</p>
+    </div>
+  </div>
+
+  <script>
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.5 + 0.5;
+      s.style.cssText = `
+        width: ${size}px; height: ${size}px;
+        top: ${Math.random() * 100}%; left: ${Math.random() * 100}%;
+        --dur: ${Math.random() * 3 + 2}s;
+        --delay: ${Math.random() * 4}s;
+      `;
+      starsEl.appendChild(s);
+    }
+  </script>
+</body>
+</html>
